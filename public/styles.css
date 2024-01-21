@@ -196,6 +196,19 @@ form input:focus {
 	width: 100%;
 }
 
+.btn {
+	padding: 12px;
+	background-color: blueviolet;
+	margin-bottom: 0.75rem;
+	width: fit-content;
+	align-self: self-end;
+	box-shadow: 4px 4px 0px 0px black;
+	transition: all ease-in 0.2s;
+	border: 2px solid black;
+	font-size: 1rem;
+	color: white;
+}
+
 @media (max-width: 600px) {
 	.container {
 		width: 95%;
