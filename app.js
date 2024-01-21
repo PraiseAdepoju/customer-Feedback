@@ -38,6 +38,20 @@ app.get("/", (req, res) => {
 	});
 });
 
+app.get("/feedback", (req, res) => {
+	// Read the HTML file and send it as a response
+	const indexPath = `${__dirname}/public/feedback.html`;
+	fs.readFile(indexPath, "utf8", (err, data) => {
+		if (err) {
+			console.error(err);
+			res.status(500).send("Internal Server Error");
+		} else {
+			res.send(data);
+		}
+	});
+});
+
+
 app.get("/feedbacks", async (req, res) => {
 	try {
 		const feedback = await Feedback.find();
