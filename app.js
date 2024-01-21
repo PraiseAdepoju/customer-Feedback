@@ -38,6 +38,16 @@ app.get("/", (req, res) => {
 	});
 });
 
+app.get("/feedbacks", async (req, res) => {
+	try {
+		const feedback = await Feedback.find();
+		res.json(feedback);
+	} catch (error) {
+		console.error(error);
+		res.status(500).send("Internal Server Error");
+	}
+});
+
 app.post("/submit-feedback", async (req, res) => {
 	try {
 		const { name, email, feedback, rating } = req.body;
