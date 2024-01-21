@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Food Delivery Service Feedback</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <div class="container">
+    <img src="/images/d.svg" class="star1">
+    <img src="/images/d.svg" class="star2">
+    <img src="/images/d.svg" class="star3">
+    <img src="/images/d.svg" class="star4">
+    <img src="/images/d.svg" class="star5">
+    <img src="/images/d.svg" class="star6">
+    <h1>Food Delivery Service</br> Feedback</h1>
+    <form action="/submit-feedback" method="post">
+      <label for="name">Your Name:</label>
+      <input type="text" id="name" name="name" required>
+      <div class="small">
+        <div class="email">
+          <label for="email">Your Email:</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="rating">
+          <label for="rating">Rate our service (1-5):</label>
+          <input type="number" id="rating" name="rating" min="1" max="5" required>
+        </div>
+      </div>
+      <label for="feedback">Your Feedback:</label>
+      <textarea id="feedback" name="feedback" rows="4" required></textarea>
+
+      <button type="submit" id="submit-btn">Submit Feedback</button>
+    </form>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const feedbackForm = document.querySelector('form');
+
+      document.querySelector('#submit-btn').addEventListener('click', async (event) => {
+        event.preventDefault();
+
+        // Get form data
+        const formData = new FormData(feedbackForm);
+        const formObject = {};
+        formData.forEach((value, key) => {
+          formObject[key] = value;
+        });
+
+        // Send a POST request to the server
+        const response = await fetch('/submit-feedback', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formObject),
+        });
+
+        // Check if the submission was successful
+        const result = await response.json();
+        if (result.success) {
+          alert('Feedback submitted successfully!');
+        } else {
+          alert(`Error: ${result.error}`);
+        }
+        let inputs = document.querySelectorAll('input');
+        inputs.forEach(input => {
+          input.value = ""
+        })
+        document.querySelector('textarea').value = ""
+
+      });
+    });
+  </script>
+</body>
+
+</html>
