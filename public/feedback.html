@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FeedBacks</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+
+
+
+
+<body>
+    <div class="table-holder">
+        <h1>Feedbacks</h1>
+
+
+    </div>
+
+    <script>
+        const getFeedbacks = async () => {
+            const response = await fetch('/feedbacks');
+            const feedbacks = await response.json();
+            console.log(feedbacks);
+            const table = document.querySelector('.table-holder');
+            feedbacks.forEach(feedback => {
+                const card = document.createElement('div');
+                card.classList.add('card');
+
+                const cardHeader = document.createElement('div');
+                cardHeader.classList.add('card-header');
+
+                const cardBody = document.createElement('div');
+                cardBody.classList.add('card-body');
+
+                const name = document.createElement('h2');
+                name.innerText = feedback.name;
+
+                const feedbackText = document.createElement('p');
+                feedbackText.innerText = feedback.feedback;
+
+                const rating = document.createElement('p');
+                rating.innerText = `Rating : ${feedback.rating}`;
+
+                cardHeader.appendChild(name);
+                cardBody.appendChild(feedbackText);
+                cardBody.appendChild(rating);
+
+                card.appendChild(cardHeader);
+                card.appendChild(cardBody);
+
+                table.appendChild(card);
+            });
+        }
+
+
+        document.addEventListener('DOMContentLoaded', () => {
+
+            getFeedbacks();
+        });
+    </script>
+
+
+</body>
+
+</html>
