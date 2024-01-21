@@ -1,0 +1,17 @@
+{
+  "name": "Feeback-Form-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "author": "csc 310 group 24",
+  "license" : "MIT",
+  "engines": {
+    "node": "18.x"
+  },
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "express": "^4.18.2",
+    "mongoose": "^8.1.0",
+    "nodemon": "^3.0.3"
+  }
+}
