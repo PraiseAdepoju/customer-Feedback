@@ -7,7 +7,7 @@ const path = require("path")
 const app = express();
 const PORT = 4000;
 
-mongoose.connect("mongodb://localhost:27017/feedback-db");
+mongoose.connect("mongodb+srv://admin:admin@feed.5uf8avf.mongodb.net/?retryWrites=true&w=majority/feedback-db");
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
